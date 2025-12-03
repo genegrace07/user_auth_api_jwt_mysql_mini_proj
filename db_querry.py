@@ -1,5 +1,4 @@
 import mysql.connector
-import pymysql
 from dotenv import load_dotenv
 import os
 
@@ -9,10 +8,12 @@ db = mysql.connector.connect(
     host=os.getenv('dbhost'),
     user=os.getenv('dbuser'),
     password=os.getenv('dbpassword'),
-    database=os.getenv('auth_api')
+    database=os.getenv('dbdatabase'),
+    auth_plugin=os.getenv('dbauth_plugin')
 )
 
+
 dbcursor = db.cursor(dictionary=True)
-dbcursor.execute('select * from auth_api')
+dbcursor.execute('select * from user_details')
 result = dbcursor.fetchall()
 print(result)

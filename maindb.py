@@ -8,7 +8,8 @@ db = mysql.connector.connect(
     host=os.getenv('dbhost'),
     user=os.getenv('dbuser'),
     password=os.getenv('dbpassword'),
-    database=os.getenv('dbdatabase')
+    database=os.getenv('dbdatabase'),
+    auth_plugin=os.getenv('dbauth_plugin')
 )
 
 class Users:
@@ -19,7 +20,14 @@ class Users:
         dbcursor.execute(querry,(username,password))
         db.commit()
         dbcursor.close()
-        db.close()
+    def login(self,username,password):
+        db.ping(reconnect=True)
+        dbcursor=db.cursor(buffered=True)
+        querry='select * from user_details where user=%s and password=%s'
+        dbcursor.execute(querry,(username,password,))
+        result=dbcursor.fetchall()
+        dbcursor.close()
+        return result
 
 class Verify(Users):
     def check_username(self,username):

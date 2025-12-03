@@ -2,4 +2,13 @@
 
 .venv
 .idea/
+<<<<<<< HEAD
 .env
+=======
+.env
+sql_querry.py
+__pycache__/
+
+
+
+>>>>>>> 1acd448c833e570b832579c558e3f849cb658568

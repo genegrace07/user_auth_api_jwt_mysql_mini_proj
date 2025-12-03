@@ -21,3 +21,12 @@ class Users:
         dbcursor.close()
         db.close()
 
+class Verify(Users):
+    def check_username(self,username):
+        db.ping(reconnect=True)
+        dbcursor=db.cursor(buffered=True)
+        querry='select users from user_info where users=%s'
+        dbcursor.execute(querry,(username,))
+        result=dbcursor.fetchone()
+        dbcursor.close()
+        return result

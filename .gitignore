@@ -4,4 +4,7 @@
 .idea/
 .env
 sql_querry.py
+__pycache__/
+
+
 

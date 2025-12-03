@@ -1,4 +1,6 @@
-from maindb import  Users
+from maindb import  Users,Verify
 
-def depend():
+def depend_users():
     return Users()
+def depend_verify():
+    return Verify()

@@ -20,11 +20,11 @@ class Users:
         dbcursor.execute(querry,(username,password))
         db.commit()
         dbcursor.close()
-    def login(self,username,password):
+    def login(self,username):
         db.ping(reconnect=True)
         dbcursor=db.cursor(buffered=True)
-        querry='select * from user_details where user=%s and password=%s'
-        dbcursor.execute(querry,(username,password,))
+        querry='select users,password from user_info where users=%s'
+        dbcursor.execute(querry,(username,))
         result=dbcursor.fetchall()
         dbcursor.close()
         return result

@@ -14,6 +14,6 @@ db = mysql.connector.connect(
 
 
 dbcursor = db.cursor(dictionary=True)
-dbcursor.execute('select * from user_details')
+dbcursor.execute('select * from user_info')
 result = dbcursor.fetchall()
 print(result)

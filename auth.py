@@ -7,6 +7,7 @@ from jose import jwt
 from datetime import datetime,timedelta
 from fastapi.security import OAuth2PasswordBearer
 
+
 router = APIRouter(prefix='/user',tags=['User'])
 pwd_context = CryptContext(schemes=['sha256_crypt'],deprecated='auto')
 exp_time = 15

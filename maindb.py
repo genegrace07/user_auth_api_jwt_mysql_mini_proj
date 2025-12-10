@@ -38,11 +38,11 @@ class Verify(Users):
         result=dbcursor.fetchone()
         dbcursor.close()
         return result
-    def select_all(self):
+    def select_all(self,username):
         db.ping(reconnect=True)
         dbcursor=db.cursor(buffered=True)
-        querry='select * from user_info'
-        dbcursor.execute(querry)
+        querry='select * from user_info where users=%s'
+        dbcursor.execute(querry,(username,))
         result=dbcursor.fetchall()
         dbcursor.close()
         return result

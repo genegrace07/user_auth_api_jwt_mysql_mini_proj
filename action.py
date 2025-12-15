@@ -1,17 +1,19 @@
-# from fastapi import APIRouter,Depends,HTTPException,status
-# from verify import verify_token
-# from fastapi.security import OAuth2PasswordRequestForm,HTTPBearer,OAuth2PasswordBearer
-# from dependency import depend_verify
-# from jose import jwt
-# from passlib.context import CryptContext
-# from datetime import datetime, timedelta
+from fastapi import APIRouter,Depends,HTTPException
+from fastapi.security import OAuth2PasswordBearer
+from verify import verify_token,oauth_scheme
+from dependency import depend_verify
 
-# @router.get('/me')
-# async def get_me(get_bearer=Depends(bearer_scheme)):
-#     if get_bearer:
-#         user=verify_token(get_bearer)
-#         return {'access_token':get_bearer,'user':user}
-#     raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail='Invalid token or expired')
+router = APIRouter(prefix='/user',tags=['user'])
+
+@router.get('/view_users')
+async def view_users(get_token=Depends(oauth_scheme),get_users=Depends(depend_verify)):
+    if get_token:
+        result=get_users.all_users()
+        return result
+
+
+
+
 
 
 

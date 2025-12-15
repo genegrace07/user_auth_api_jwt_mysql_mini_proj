@@ -46,3 +46,19 @@ class Verify(Users):
         result=dbcursor.fetchall()
         dbcursor.close()
         return result
+    def select_users(self):
+        db.ping(reconnect=True)
+        dbcursor=db.cursor(buffered=True)
+        querry='select users from user_info'
+        dbcursor.execute(querry)
+        result=dbcursor.fetchall()
+        dbcursor.close()
+        return result
+    def all_users(self):
+        db.ping(reconnect=True)
+        dbcursor=db.cursor(buffered=True)
+        querry='select id,users,created_at from user_info'
+        dbcursor.execute(querry)
+        result=dbcursor.fetchall()
+        dbcursor.close()
+        return result

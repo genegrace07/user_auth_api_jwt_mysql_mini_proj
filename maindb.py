@@ -28,6 +28,14 @@ class Users:
         result=dbcursor.fetchall()
         dbcursor.close()
         return result
+    def update_password(self,password,username):
+        db.ping(reconnect=True)
+        dbcursor=db.cursor(buffered=True)
+        querry='update user_info set password=%s where users=%s'
+        dbcursor.execute(querry,(password,username))
+        db.commit()
+        db.close()
+        dbcursor.close()
 
 class Verify(Users):
     def check_username(self,username):
